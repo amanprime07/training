@@ -1,4 +1,4 @@
-package con.training.string;
+package com.training.string;
 
 public class StringPermutation {
 
