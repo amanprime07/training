@@ -25,10 +25,10 @@ public class MergeSort {
 
     private static void mergeHalvesDesc(int[] arr, int start, int mid, int end, int[] temp) {
         int left = start;
-        int right = mid+1;
+        int right = mid + 1;
         int index = 0;
-        while (left<=mid && right<=end){
-            if(arr[left]>arr[right]){
+        while (left <= mid && right <= end) {
+            if (arr[left] > arr[right]) {
                 temp[index] = arr[left];
                 left++;
             } else {
@@ -38,19 +38,19 @@ public class MergeSort {
             index++;
         }
 
-        while (left<=mid){
-            temp[index]=arr[left];
+        while (left <= mid) {
+            temp[index] = arr[left];
             index++;
             left++;
         }
-        while (right<=end){
-            temp[index]=arr[right];
+        while (right <= end) {
+            temp[index] = arr[right];
             right++;
             index++;
         }
 
-        for(int i = start; i<=end; i++){
-            arr[i] = temp[i-start];
+        for (int i = start; i <= end; i++) {
+            arr[i] = temp[i - start];
         }
     }
 

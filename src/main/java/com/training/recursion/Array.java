@@ -6,8 +6,8 @@ public class Array {
 
     public static void main(String[] args) {
         int[] arr = {1, 2, 3, 4, 5};
-//        System.out.println(Arrays.toString(bruteForce(arr)));
-//        System.out.println(Arrays.toString(spaceOptimized(arr)));
+        System.out.println(Arrays.toString(bruteForce(arr)));
+        System.out.println(Arrays.toString(spaceOptimized(arr)));
         System.out.println(Arrays.toString(recursive(arr, 0, arr.length - 1)));
     }
 

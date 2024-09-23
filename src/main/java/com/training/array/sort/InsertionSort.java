@@ -1,4 +1,4 @@
-package com.training.sort;
+package com.training.array.sort;
 
 import java.util.Arrays;
 
@@ -6,10 +6,10 @@ public class InsertionSort {
 
     public static void main(String[] args) {
         int[] arr = {1, 4, 5, 7, 2, 3, -100};
-//        insertionSortAsc(arr);
+        insertionSortAsc(arr);
         System.out.println(Arrays.toString(arr));
-//        insertionSortDesc(arr);
-//        System.out.println(Arrays.toString(arr));
+        insertionSortDesc(arr);
+        System.out.println(Arrays.toString(arr));
         insertionSortDescRecursive(arr, 0, arr.length);
         System.out.println(Arrays.toString(arr));
     }
