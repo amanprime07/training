@@ -28,6 +28,6 @@ public class BinaryConverter {
 
     public static void main(String[] args) {
         var converter = new BinaryConverter(64);
-        System.out.println(converter.convertToBinary(1023));
+        System.out.println(converter.convertToBinary(7));
     }
 }
