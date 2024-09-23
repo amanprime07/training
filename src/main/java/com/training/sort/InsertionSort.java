@@ -6,11 +6,11 @@ public class InsertionSort {
 
     public static void main(String[] args) {
         int[] arr = {1, 4, 5, 7, 2, 3, -100};
-        insertionSortAsc(arr);
+//        insertionSortAsc(arr);
         System.out.println(Arrays.toString(arr));
-        insertionSortDesc(arr);
-        System.out.println(Arrays.toString(arr));
-        insertionSortAscRecursive(arr, arr.length);
+//        insertionSortDesc(arr);
+//        System.out.println(Arrays.toString(arr));
+        insertionSortDescRecursive(arr, 0, arr.length);
         System.out.println(Arrays.toString(arr));
     }
 
@@ -39,16 +39,28 @@ public class InsertionSort {
         }
     }
 
-    private static void insertionSortAscRecursive(int[] arr, int size) {
-        if (size <= 0) {
+    private static void insertionSortAscRecursive(int[] arr, int k, int size) {
+        if (k == size) {
             return;
         }
-        insertionSortAscRecursive(arr, size - 1);
-        for (int i = size - 1; i > 0; i--) {
+        for (int i = k; i > 0; i--) {
             if (arr[i] < arr[i - 1]) {
                 swap(arr, i, i - 1);
             }
         }
+        insertionSortAscRecursive(arr, k+1, size);
+    }
+
+    private static void insertionSortDescRecursive(int[] arr, int k, int size) {
+        if (k == size) {
+            return;
+        }
+        for (int i = k; i > 0; i--) {
+            if (arr[i] > arr[i - 1]) {
+                swap(arr, i, i - 1);
+            }
+        }
+        insertionSortDescRecursive(arr, k+1, size);
     }
 
     private static void swap(int[] arr, int s, int d) {
