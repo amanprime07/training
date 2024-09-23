@@ -4,85 +4,106 @@ import java.util.Arrays;
 
 public class MergeSort {
 
-    private static void mergeSort(int[] arr, int leftStart, int rightEnd, int[] temp, boolean ascending) {
-        if (leftStart >= rightEnd) {
+
+    /*
+        2, 5, 4, 3, 10, -1
+        mid = 2
+        2,5,4    3,10,-1
+        mid=1    mid = (3+5)/2 = 4
+      2,5   4    3,10, -1
+      mid=0      mid = (3+4)/2 = 3
+      2  5  4    3  10  -1
+
+
+    * */
+    private static void mergeSortAsc(int[] arr, int start, int end, int[] temp) {
+        if (start >= end) {
             return;
         }
-        int mid = (leftStart + rightEnd) / 2;
-        mergeSort(arr, 0, mid, temp, ascending);
-        mergeSort(arr, mid + 1, rightEnd, temp, ascending);
-        if(ascending)
-            mergeHalvesAscending(arr, leftStart, rightEnd, temp);
-        mergeHalvesDescending(arr, leftStart, rightEnd, temp);
+        int mid = (start + end) / 2;
+        mergeSortAsc(arr, start, mid, temp);
+        mergeSortAsc(arr, mid + 1, end, temp);
+        mergeHalvesAscending(arr, start, mid, end, temp);
     }
 
-    private static void mergeHalvesAscending(int[] arr, int leftStart, int rightEnd, int[] temp) {
-        int leftEnd = (leftStart + rightEnd) / 2;
-        int rightStart = leftEnd + 1;
-        int index = leftStart;
-        int size = rightEnd - leftStart + 1;
-
-        int left = leftStart;
-        while (leftStart <= leftEnd && rightStart <= rightEnd) {
-            if (arr[leftStart] <= arr[rightStart]) {
-                temp[index] = arr[leftStart];
-                leftStart++;
+    private static void mergeHalvesAscending(int[] arr, int start, int mid, int end, int[] temp) {
+        int left = start;
+        int right = mid + 1;
+        int index = 0;
+        while (left <= mid && right <= end) {
+            if (arr[left] <= arr[right]) {
+                temp[index] = arr[left];
+                left++;
             } else {
-                temp[index] = arr[rightStart];
-                rightStart++;
-
+                temp[index] = arr[right];
+                right++;
             }
             index++;
         }
-        while (leftStart <= leftEnd) {
-            temp[index] = arr[leftStart];
-            index++;
-            leftStart++;
-        }
-        while (rightStart <= rightEnd) {
-            temp[index] = arr[rightStart];
-            index++;
-            rightStart++;
-        }
-        System.arraycopy(temp, left, arr, left, size);
-    }
-
-    private static void mergeHalvesDescending(int[] arr, int leftStart, int rightEnd, int[] temp) {
-        int leftEnd = (leftStart + rightEnd) / 2;
-        int rightStart = leftEnd + 1;
-        int index = leftStart;
-        int size = rightEnd - leftStart + 1;
-        int left = leftStart;
-        while (leftStart <= leftEnd && rightStart <= rightEnd) {
-            if (arr[leftStart] > arr[rightStart]) {
-                temp[index] = arr[leftStart];
-                leftStart++;
-            } else {
-                temp[index] = arr[rightStart];
-                rightStart++;
-
-            }
+        while (left <= mid) {
+            temp[index] = arr[left];
+            left++;
             index++;
         }
-        while (leftStart <= leftEnd) {
-            temp[index] = arr[leftStart];
+        while (right <= end) {
+            temp[index] = arr[right];
+            right++;
             index++;
-            leftStart++;
         }
-        while (rightStart <= rightEnd) {
-            temp[index] = arr[rightStart];
-            index++;
-            rightStart++;
+        for (int i = start; i <= end; i++) {
+            arr[i] = temp[i - start];
         }
-        System.arraycopy(temp, left, arr, left, size);
     }
 
     public static void main(String[] args) {
-        int[] a = {2, 5, 4, 3, 10, -1};
-        boolean ascending = false;
-        System.out.println(Arrays.toString(a));
-        mergeSort(a, 0, 5, new int[a.length], ascending);
-        System.out.println(Arrays.toString(a));
+        int[] arr = {2, 5, 4, 3, 10, -1};
+        System.out.println(Arrays.toString(arr));
+        int[] temp = new int[arr.length];
+        mergeSortAsc(arr, 0, arr.length - 1, temp);
+        System.out.println(Arrays.toString(arr));
+        mergeSortDesc(arr, 0, arr.length-1, temp);
+        System.out.println(Arrays.toString(arr));
+    }
+
+
+    private static void mergeSortDesc(int[] arr, int start, int end, int[] temp) {
+        if (start >= end) {
+            return;
+        }
+        int mid = (start + end) / 2;
+        mergeSortDesc(arr, start, mid, temp);
+        mergeSortDesc(arr, mid + 1, end, temp);
+        mergeHalvesDescending(arr, start, mid, end, temp);
+    }
+
+    private static void mergeHalvesDescending(int[] arr, int start, int mid, int end, int[] temp) {
+        int left = start;
+        int right = mid + 1;
+        int index = 0;
+        while (left <= mid && right <= end) {
+            if (arr[left] > arr[right]) {
+                temp[index] = arr[left];
+                left++;
+            } else {
+                temp[index] = arr[right];
+                right++;
+            }
+            index++;
+        }
+        while (left <= mid) {
+            temp[index] = arr[left];
+            index++;
+            left++;
+        }
+        while (right <= end) {
+            temp[index] = arr[right];
+            index++;
+            right++;
+        }
+
+        for (int i = start; i <= end; i++) {
+            arr[i] = temp[i - start];
+        }
     }
 
 }
