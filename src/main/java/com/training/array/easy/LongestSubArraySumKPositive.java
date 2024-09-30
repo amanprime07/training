@@ -8,7 +8,7 @@ public class LongestSubArraySumKPositive {
 //        int[] arr = {2, 2, 4, 1, 2};
 //        int[] arr = {1, 2, 3, 1, 1, 1};
 //        int[] arr = {1, 2, 1, 3};
-        int[]arr = {-1, 1, 1};
+        int[] arr = {-1, 1, 1};
         long start = System.nanoTime();
         int n = slidingWindowApproach(arr, 1);
         System.out.println("time take: " + (System.nanoTime() - start) / 1000);
@@ -51,19 +51,19 @@ public class LongestSubArraySumKPositive {
         return maxLen;
     }
 
-    public static int slidingWindowApproach(int []arr, long k) {
+    public static int slidingWindowApproach(int[] arr, long k) {
         // Write your code here
-        int left =0, right=0;
+        int left = 0, right = 0;
         long sum = 0;
         int maxLen = Integer.MIN_VALUE;
-        while(right<arr.length){
-            sum+=arr[right];
-            while(left<=right && sum>k){
-                sum-=arr[left];
+        while (right < arr.length) {
+            sum += arr[right];
+            while (left <= right && sum > k) {
+                sum -= arr[left];
                 left++;
             }
-            if(sum==k){
-                maxLen = Math.max(maxLen, right-left+1);
+            if (sum == k) {
+                maxLen = Math.max(maxLen, right - left + 1);
             }
             right++;
         }

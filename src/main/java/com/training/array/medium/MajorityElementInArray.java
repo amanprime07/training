@@ -51,7 +51,7 @@ public class MajorityElementInArray {
         return -1;
     }
 
-    //    Boyer-Moore Voting Algo
+    // Boyer-Moore Voting Algo
     private static int majorityElementMoore(int[] arr, int size) {
         int el = -1, count = 0;
         for (int i = 0; i < size; i++) {
