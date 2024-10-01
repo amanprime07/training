@@ -6,9 +6,9 @@ import java.util.Map;
 public class LongestSubArraySumK {
 
     public static void main(String[] args) {
-        int[] arr = {3, 5};
+        int[] arr = {2, 2, 4, 1, -1, 1, 2};
         long start = System.nanoTime();
-        int n = prefixSumApproach(arr, 3);
+        int n = prefixSumApproach(arr, 0);
         System.out.println("time take: " + (System.nanoTime() - start) / 1000);
         System.out.println(n);
     }
@@ -37,7 +37,6 @@ public class LongestSubArraySumK {
             return maxLen;
         }
         Map<Integer, Integer> map = new HashMap<>();
-//        map.put(arr[0], 0);
         int sum = 0;
         for (int i = 0; i < arr.length; i++) {
             sum += arr[i];
