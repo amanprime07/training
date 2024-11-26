@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class NextPermutation {
 
     public static void main(String[] args) {
-        int[] arr = {1};
+        int[] arr = {1, 2};
         System.out.println(Arrays.toString(arr));
         nextPermutation(arr, arr.length);
         System.out.println(Arrays.toString(arr));
@@ -35,7 +35,47 @@ public class NextPermutation {
                 }
             }
         }
-        quickSort(arr, idx + 1, size - 1);
+        mergeSort(arr, idx + 1, size - 1, new int[arr.length]);
+    }
+
+    private static void mergeSort(int[] arr, int left, int right, int[] temp) {
+        if (left >= right) {
+            return;
+        }
+        int mid = (left + right) / 2;
+        mergeSort(arr, left, mid, temp);
+        mergeSort(arr, mid + 1, right, temp);
+        mergeSort(arr, left, mid, right, temp);
+    }
+
+    private static void mergeSort(int[] arr, int start, int mid, int end, int[] temp) {
+        int left = start;
+        int idx = 0;
+        int right = mid + 1;
+
+        while (left <= mid && right <= end) {
+            if (arr[left] <= arr[mid]) {
+                temp[idx] = arr[left];
+                left++;
+            } else {
+                temp[idx] = arr[mid];
+                mid++;
+            }
+            idx++;
+        }
+        while (left <= mid) {
+            temp[idx] = arr[left];
+            left++;
+            idx++;
+        }
+        while (right <= end) {
+            temp[idx] = arr[mid];
+            right++;
+            idx++;
+        }
+        for (int i = start; i <= end; i++) {
+            arr[i] = temp[i - start];
+        }
     }
 
     private static void quickSort(int[] arr, int start, int end) {

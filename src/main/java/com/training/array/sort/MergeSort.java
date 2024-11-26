@@ -50,19 +50,17 @@ public class MergeSort {
             right++;
             index++;
         }
-        for (int i = start; i <= end; i++) {
-            arr[i] = temp[i - start];
-        }
+        if (end + 1 - start >= 0) System.arraycopy(temp, 0, arr, start, end + 1 - start);
     }
 
     public static void main(String[] args) {
         int[] arr = {2, 5, 4, 3, 10, -1};
         System.out.println(Arrays.toString(arr));
         int[] temp = new int[arr.length];
-        mergeSortAsc(arr, 0, arr.length - 1, temp);
+        mergeSort(arr, 0, arr.length - 1, temp);
         System.out.println(Arrays.toString(arr));
-        mergeSortDesc(arr, 0, arr.length-1, temp);
-        System.out.println(Arrays.toString(arr));
+//        mergeSortDesc(arr, 0, arr.length - 1, temp);
+//        System.out.println(Arrays.toString(arr));
     }
 
 
@@ -101,6 +99,43 @@ public class MergeSort {
             right++;
         }
 
+        if (end + 1 - start >= 0) System.arraycopy(temp, 0, arr, start, end + 1 - start);
+    }
+
+    private static void mergeSort(int[] arr, int left, int right, int[] temp) {
+        if (left >= right) {
+            return;
+        }
+        int mid = (left + right) / 2;
+        mergeSort(arr, left, mid, temp);
+        mergeSort(arr, mid + 1, right, temp);
+        mergeHalves(arr, left, mid, right, temp);
+    }
+
+    private static void mergeHalves(int[] arr, int start, int mid, int end, int[] temp) {
+        int index = 0;
+        int left = start;
+        int right = mid + 1;
+        while (left <= mid && right <= end) {
+            if (arr[left] < arr[right]) {
+                temp[index] = arr[left];
+                left++;
+            } else {
+                temp[index] = arr[right];
+                right++;
+            }
+            index++;
+        }
+        while (left <= mid) {
+            temp[index] = arr[left];
+            left++;
+            index++;
+        }
+        while (right <= end) {
+            temp[index] = arr[right];
+            index++;
+            right++;
+        }
         for (int i = start; i <= end; i++) {
             arr[i] = temp[i - start];
         }

@@ -8,8 +8,13 @@ public class LongestSubArraySumK {
     public static void main(String[] args) {
         int[] arr = {2, 2, 4, 1, -1, 1, 2};
         long start = System.nanoTime();
-        int n = prefixSumApproach(arr, 0);
-        System.out.println("time take: " + (System.nanoTime() - start) / 1000);
+        int k = 7;
+        int n = bruteForce(arr, k);
+        System.out.println("bruteForce time take: " + (System.nanoTime() - start) / 1000);
+        System.out.println(n);
+        start = System.nanoTime();
+        n = prefixSumApproach(arr, k);
+        System.out.println("prefixSumApproach time take: " + (System.nanoTime() - start) / 1000);
         System.out.println(n);
     }
 

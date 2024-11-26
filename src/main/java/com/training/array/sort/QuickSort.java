@@ -3,26 +3,20 @@ package com.training.array.sort;
 import java.util.Arrays;
 
 public class QuickSort {
+
     private static void quickSortAsc(int[] arr) {
         quickSortAsc(arr, 0, arr.length - 1);
     }
 
-    /*
-     1,5,4,3,2,8
-     pivot = 3
-     1,2,4,3,5,8
-     1,2,3,4,5,8
-    *
-    * */
     private static void quickSortAsc(int[] arr, int start, int end) {
-        int pivot = (start + end) / 2;
         int left = start;
         int right = end;
+        int pivot = (left + right) / 2;
         do {
-            while (arr[left] < arr[pivot] && left < end) {
+            while (arr[left] < arr[pivot]) {
                 left++;
             }
-            while (arr[pivot] < arr[right] && right > start) {
+            while (arr[pivot] < arr[right]) {
                 right--;
             }
             if (left <= right) {
@@ -34,10 +28,11 @@ public class QuickSort {
         if (left < end) {
             quickSortAsc(arr, left, end);
         }
-        if (right > start) {
+        if (start < right) {
             quickSortAsc(arr, start, right);
         }
     }
+
 
     private static void swap(int[] arr, int start, int end) {
         int temp = arr[start];
@@ -101,7 +96,7 @@ public class QuickSort {
         if (left < end) {
             quickSortDesc(arr, left, end);
         }
-        if (right > start) {
+        if (start < right) {
             quickSortDesc(arr, start, right);
         }
     }

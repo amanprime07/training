@@ -6,7 +6,7 @@ import java.util.Map;
 public class MajorityElementInArray {
 
     public static void main(String[] args) {
-        int[] arr = {3, 2, 3};
+        int[] arr = {3, 2, 3, 1, 1, 1, 1};
         long start = System.nanoTime();
         int n = majorityElement(arr, arr.length);
         System.out.println("Time taken: " + (System.nanoTime() - start) / 1000);
@@ -22,7 +22,7 @@ public class MajorityElementInArray {
     }
 
     private static int majorityElement(int[] arr, int size) {
-        int el = arr[0];
+        int el = -1;
         for (int i = 0; i < size; i++) {
             int count = 0;
             for (int j = 0; j < size; j++) {
@@ -51,13 +51,14 @@ public class MajorityElementInArray {
         return -1;
     }
 
+
     // Boyer-Moore Voting Algo
     private static int majorityElementMoore(int[] arr, int size) {
-        int el = -1, count = 0;
+        int count = 0;
+        int el = -1;
         for (int i = 0; i < size; i++) {
             if (count == 0) {
                 el = arr[i];
-                count = 1;
             }
             if (el == arr[i]) {
                 count++;

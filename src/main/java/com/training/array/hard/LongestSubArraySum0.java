@@ -1,6 +1,5 @@
 package com.training.array.hard;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
