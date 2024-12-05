@@ -20,18 +20,15 @@ public class ReverseDoublyLinkedList {
         if (head == null || head.next == null) {
             return head;
         }
+        Node curr = head, prev = null;
 
-        Node curr = head;
-        Node prev = null;
-        // null<->1<->2<->3<->null
         while (curr != null) {
             prev = curr.prev;
             curr.prev = curr.next;
             curr.next = prev;
-            // using previous to move forward in list.
+
             curr = curr.prev;
         }
-        // return prev.prev since curr will be null
         return prev.prev;
     }
 

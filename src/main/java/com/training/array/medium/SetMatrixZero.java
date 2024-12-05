@@ -86,7 +86,9 @@ public class SetMatrixZero {
     }
 
     /*
-    set row and column to zero if arr[i][j] == 0
+    set the row & column except the i,j position with -1
+    set i,j position with -1
+    set row and column to 0 if arr[i][j] == -1
      */
     private static void bruteForce(int[][] m) {
         for (int i = 0; i < m.length; i++) {
