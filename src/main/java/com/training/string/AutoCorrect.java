@@ -63,8 +63,10 @@ public class AutoCorrect {
         var queries = new String[]{"spede", "deul"};
         long start = System.nanoTime();
         System.out.println(findAutoCorrect(words, queries));
-        System.out.println("TimeTaken "+ (System.nanoTime()-start)*.000001);
+        System.out.println("TimeTaken "+ (System.nanoTime()-start)/100000);
+        start = System.nanoTime();
         System.out.println(findAutoCorrectAnagramMap(words, queries));
+        System.out.println("TimeTaken "+ (System.nanoTime()-start)/100000);
     }
 
 }

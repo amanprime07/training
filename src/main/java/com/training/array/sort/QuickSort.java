@@ -24,7 +24,7 @@ public class QuickSort {
                 left++;
                 right--;
             }
-        } while (left <= right);
+        } while (left < right);
         if (left < end) {
             quickSortAsc(arr, left, end);
         }
@@ -92,7 +92,7 @@ public class QuickSort {
                 left++;
                 right--;
             }
-        } while (left <= right);
+        } while (left < right);
         if (left < end) {
             quickSortDesc(arr, left, end);
         }
