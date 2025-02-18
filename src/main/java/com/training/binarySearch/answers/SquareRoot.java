@@ -8,17 +8,17 @@ public class SquareRoot {
         long ans = bruteForce(n);
         long timeTaken = System.nanoTime()-start;
         System.out.println(ans);
-        System.out.println("time: " + timeTaken);
+        System.out.println("bruteForce time: " + timeTaken);
         start = System.nanoTime();
         ans  = builtIn(n);
         timeTaken = System.nanoTime()-start;
         System.out.println(ans);
-        System.out.println("time: " + timeTaken);
+        System.out.println("builtIn time: " + timeTaken);
         start = System.nanoTime();
         ans = binarySearch(n);
         timeTaken = System.nanoTime()-start;
         System.out.println(ans);
-        System.out.println("time: " + timeTaken);
+        System.out.println("binarySearch time: " + timeTaken);
     }
 
     private static long bruteForce(long n) {
@@ -43,9 +43,9 @@ public class SquareRoot {
             long sq = mid * mid;
             if (sq <= n) {
                 left = mid + 1;
+                ans = mid;
             } else {
                 right = mid - 1;
-                ans = right;
             }
         }
         return ans;

@@ -5,7 +5,7 @@ public class NthRootOfNumber {
         int n = 262144;
         int pow = 9;
         long start = System.nanoTime();
-        int ans = bruteForce(n, pow);
+        long ans = bruteForce(n, pow);
         long timeTaken = System.nanoTime() - start;
         System.out.println(ans);
         System.out.println("timeTaken " + timeTaken / 1000);
@@ -16,14 +16,14 @@ public class NthRootOfNumber {
         System.out.println("timeTaken " + timeTaken / 1000);
     }
 
-    private static int binarySearch(int n, int pow) {
+    private static long binarySearch(int n, int pow) {
         long left = 0;
         long right = n;
         while (left <= right) {
             long mid = (left + right) / 2;
             int val = pow(mid, n, pow);
             if (val == 0) {
-                return (int) mid;
+                return mid;
             }
             if (val == 1) {
                 right = mid - 1;
