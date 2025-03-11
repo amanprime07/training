@@ -1,6 +1,4 @@
-package com.training.practice;
-
-import jdk.jfr.Timespan;
+package com.training.basics;
 
 import java.util.Scanner;
 

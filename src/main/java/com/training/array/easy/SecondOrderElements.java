@@ -5,11 +5,10 @@ import java.util.Arrays;
 public class SecondOrderElements {
 
     public static void main(String[] args) {
-        int[] arr = {1, 1, 2, 2, 2, 3};
+        int[] arr = {1, };
         System.out.println("anotherBetterApproach");
         anotherBetterApproach(arr);
-        System.out.println("optimized");
-        System.out.println(Arrays.toString(optimized(arr.length, arr)));
+        System.out.println("optimized " + Arrays.toString(secondOrderElements(arr)));
     }
 
     public static int[] optimized(int n, int[] arr) {
@@ -142,5 +141,36 @@ public class SecondOrderElements {
         } else {
             System.out.println("Next max " + current);
         }
+    }
+
+    private static int[] secondOrderElements(int[] arr) {
+        int min = Integer.MAX_VALUE, sMin = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE, sMax = Integer.MIN_VALUE;
+
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] < min) {
+                sMin = min;
+                min = arr[i];
+            } else if (arr[i] < sMin && arr[i] != min) {
+                sMin = arr[i];
+            }
+
+            if (arr[i]>max){
+                sMax = max;
+                max = arr[i];
+            } else if(arr[i]>sMax && arr[i]!=max){
+                sMax = arr[i];
+            }
+        }
+
+        if(sMax == Integer.MIN_VALUE){
+            sMax = -1;
+        }
+
+        if(sMin == Integer.MAX_VALUE){
+            sMin = -1;
+        }
+
+        return new int[]{sMin, sMax};
     }
 }

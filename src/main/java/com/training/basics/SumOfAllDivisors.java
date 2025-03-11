@@ -1,4 +1,4 @@
-package com.training.practice;
+package com.training.basics;
 
 public class SumOfAllDivisors {
 

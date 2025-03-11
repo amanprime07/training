@@ -3,7 +3,8 @@ package com.training.binarySearch.answers;
 public class SquareRoot {
 
     public static void main(String[] args) {
-        long n = (long) Math.pow(999, 2);
+        long n = (long) Math.pow(999, 3);
+        System.out.println(Math.sqrt(n));
         long start = System.nanoTime();
         long ans = bruteForce(n);
         long timeTaken = System.nanoTime()-start;

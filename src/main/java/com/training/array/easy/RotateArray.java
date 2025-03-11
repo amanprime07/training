@@ -3,48 +3,52 @@ package com.training.array.easy;
 import java.util.Arrays;
 
 public class RotateArray {
+
     public static void main(String[] args) {
         int[] arr = {1, 2, 3, 4, 5, 6};
         System.out.println(Arrays.toString(arr));
-        rotateRight(arr, arr.length, 2);
+        int[] tempArr = Arrays.copyOf(arr, arr.length);
+        rotateLeft(tempArr, arr.length, 2);
+        System.out.println("rotateLeft " + Arrays.toString(tempArr));
+
+        tempArr = Arrays.copyOf(arr, arr.length);
         System.out.println(Arrays.toString(arr));
+        rotateRight(tempArr, arr.length, 2);
+        System.out.println("rotateRight " + Arrays.toString(tempArr));
     }
 
     /*
-    1,2,3,4,5,6
-    k=2
-    5,6,1,2,3,4
-
-    1,2,3,4,5,6
-    6,5,4,3,2,1
-    5,6,1,2,3,4
-    * */
-    private static void rotateRight(int[] arr, int size, int k) {
-        rotate(arr, 0, size - 1); // 5,4,3,2,1
-        System.out.println(Arrays.toString(arr));
-        rotate(arr, 0, k - 1); // 4,5,3,2,1
-        rotate(arr, k, size - 1);
+     * Rotate Right by 2
+     * IN: 1,2,3,4,5,6
+     * OUT: 5,6,1,2,3,4
+     * Steps for reversal:
+     *   Rotate 0, n-1: 6,5,4,3,2,1
+     *   Rotate 0, k-1: 5,6,4,3,2,1
+     *   Rotate k, n-1: 5,6,1,2,3,4
+     * */
+    private static void rotateRight(int[] arr, int n, int k) {
+        reverse(arr, 0, n - 1);
+        reverse(arr, 0, k - 1);
+        reverse(arr, k, n - 1);
     }
 
     /*
-    1,2,3,4,5,6
-    6,5,4,3,2,1
-    idx=0,1,2,3,4, k=2
-    3,4,5,6,1,2
-    * */
+     * Rotate Left by 2
+     * IN: 1,2,3,4,5,6
+     * OUT: 3,4,5,6,1,2
+     * Steps of reversal
+     *   Rotate entire arr: 6,5,4,3,2,1
+     *   Rotate 0, n-k: 3,4,5,6,1,2
+     *   Rotate n-k, n
+     * */
 
-    /*
-    time complexity: O(n)
-    Space complexity: O(1)
-    * */
-    private static void rotationLeft(int[] arr, int size, int k) {
-        rotate(arr, 0, size - 1);
-        System.out.println(Arrays.toString(arr));
-        rotate(arr, 0, size-1-k-1);
-        rotate(arr, size-1-k, size - 1);
+    private static void rotateLeft(int[] arr, int n, int k) {
+        reverse(arr, 0, n - 1);
+        reverse(arr, 0, n - k - 1);
+        reverse(arr, n - k, n - 1);
     }
 
-    private static void rotate(int[] arr, int start, int end) {
+    private static void reverse(int[] arr, int start, int end) {
         while (start < end) {
             int temp = arr[start];
             arr[start] = arr[end];
@@ -52,34 +56,5 @@ public class RotateArray {
             start++;
             end--;
         }
-    }
-
-    private static void swap(int[] arr, int s, int d) {
-        int temp = arr[s];
-        arr[s] = arr[d];
-        arr[d] = temp;
-    }
-
-
-    /*
-    time complexity: O(n*k)
-    Space complexity: O(1)
-    * */
-    private static void bruteForceRotateLeft(int[] arr, int size, int k) {
-        for (int i = 0; i < k; i++) {
-            int temp = arr[0];
-            for (int j = 1; j < size; j++) {
-                arr[j - 1] = arr[j];
-            }
-            arr[size - 1] = temp;
-        }
-    }
-
-    /*
-    time complexity: O(n)
-    Space complexity: O(n)
-    * */
-    private static void extraSpaceRotateLeft(int[] arr, int size, int k) {
-
     }
 }

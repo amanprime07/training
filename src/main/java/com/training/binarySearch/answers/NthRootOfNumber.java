@@ -16,7 +16,7 @@ public class NthRootOfNumber {
         System.out.println("timeTaken " + timeTaken / 1000);
     }
 
-    private static long binarySearch(int n, int pow) {
+    private static long binarySearch(long n, int pow) {
         long left = 0;
         long right = n;
         while (left <= right) {
@@ -48,10 +48,10 @@ public class NthRootOfNumber {
         return -1;
     }
 
-    private static long pow(int k, int pow) {
+    private static long pow(long n, int pow) {
         long ans = 1;
         for (int i = 0; i < pow; i++) {
-            ans *= k;
+            ans = ans * n;
         }
         return ans;
     }

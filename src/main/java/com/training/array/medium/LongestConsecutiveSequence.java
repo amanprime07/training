@@ -9,6 +9,27 @@ public class LongestConsecutiveSequence {
         int[] arr = {5, 8, 3, 2, 1, 4, 9, 7, 10, 11, 12, 13};
         System.out.println(longestConsecutiveSequenceSorting(arr, arr.length));
         System.out.println(longestConsecutiveSequenceSet(arr, arr.length));
+        System.out.println(longestConsecutiveSequence(arr, arr.length));
+    }
+
+
+    private static int longestConsecutiveSequence(int[] arr, int size) {
+        Set<Integer> s = new HashSet<>();
+        for (int i = 0; i < size; i++) {
+            s.add(arr[i]);
+        }
+        int maxCount = 0;
+        for (int i = 0; i < size; i++) {
+            if (!s.contains(arr[i] - 1)) {
+                int count = 0;
+                int x = arr[i];
+                while (s.contains(x++)) {
+                    count += 1;
+                    maxCount = Math.max(count, maxCount);
+                }
+            }
+        }
+        return maxCount;
     }
 
     private static int bruteForce(int[] arr, int size) {
@@ -44,7 +65,7 @@ public class LongestConsecutiveSequence {
         }
         int maxCount = 0;
         for (var i : set) {
-            if(!set.contains(i-1)) {
+            if (!set.contains(i - 1)) {
                 int count = 0;
                 int n = i;
                 while (set.contains(n++)) {

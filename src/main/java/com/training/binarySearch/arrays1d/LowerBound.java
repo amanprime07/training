@@ -6,6 +6,8 @@ public class LowerBound {
 
         int[] arr = {1, 1, 3, 3, 4};
         System.out.println(findLowerBoundX(arr, 2));
+        System.out.println(findLowerBoundX(arr, 1));
+        System.out.println(findLowerBoundX(arr, 3));
 
     }
 

@@ -1,7 +1,4 @@
-package com.training.practice;
-
-import java.util.ArrayList;
-import java.util.Arrays;
+package com.training.basics;
 
 public class ReverseDigits {
 

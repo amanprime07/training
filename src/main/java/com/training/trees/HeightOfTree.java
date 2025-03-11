@@ -36,11 +36,22 @@ public class HeightOfTree {
         TreeNode root1 = TreeNode.getTree();
         System.out.println(computeHeightOfTreeIterative(root1));
         System.out.println(computeHeightOfTreeRecursive(root1));
+        System.out.println(depthOfTree(root1));
     }
 
     private static int computeHeightOfTreeRecursive(TreeNode root) {
         if (root == null)
             return 0;
         return 1 + Math.max(computeHeightOfTreeRecursive(root.left), computeHeightOfTreeRecursive(root.right));
+    }
+
+    private static int depthOfTree(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int leftHeight = depthOfTree(root.left);
+        int rightHeight = depthOfTree(root.right);
+
+        return 1 + Math.max(leftHeight, rightHeight);
     }
 }

@@ -126,12 +126,12 @@ public class MergeSort {
             }
             index++;
         }
-        while (left <= mid) {
+        while (left < mid) {
             temp[index] = arr[left];
             left++;
             index++;
         }
-        while (right <= end) {
+        while (right < end) {
             temp[index] = arr[right];
             index++;
             right++;
