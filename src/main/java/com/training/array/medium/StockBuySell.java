@@ -8,16 +8,16 @@ public class StockBuySell {
         int[] arr = {7, 1, 5, 3, 6, 4};
         long start = System.nanoTime();
         int n = bruteForce(arr, arr.length);
-        System.out.println("Time taken: " + (System.nanoTime() - start)/1000);
+        System.out.println("Time taken: " + (System.nanoTime() - start) / 1000);
         System.out.println(n);
         start = System.nanoTime();
         n = stockBuySell(arr, arr.length);
-        System.out.println("Time taken: " + (System.nanoTime() - start)/1000);
+        System.out.println("Time taken: " + (System.nanoTime() - start) / 1000);
         System.out.println(n);
 
         start = System.nanoTime();
         n = optimized(arr, arr.length);
-        System.out.println("Time taken: " + (System.nanoTime() - start)/1000);
+        System.out.println("Time taken: " + (System.nanoTime() - start) / 1000);
         System.out.println(n);
     }
 
@@ -73,16 +73,17 @@ public class StockBuySell {
     }
 
     private static int optimized(int[] arr, int size) {
-        int minPrice = Integer.MAX_VALUE;
-        int maxProfit = 0;
-        int[] pos = {0, 0};
+        int maxProfit = Integer.MIN_VALUE;
+        int minValue = Integer.MAX_VALUE;
+        int[] pos = new int[2];
         for (int i = 0; i < size; i++) {
-            if (arr[i] < minPrice) {
-                minPrice = arr[i];
+            if (arr[i] < minValue) {
+                minValue = arr[i];
                 pos[0] = i;
             }
-            if (maxProfit < (arr[i] - minPrice)) {
-                maxProfit = arr[i] - minPrice;
+            int profit = arr[i] - minValue;
+            if (maxProfit < profit) {
+                maxProfit = profit;
                 pos[1] = i;
             }
 
