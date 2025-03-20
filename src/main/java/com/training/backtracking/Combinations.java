@@ -39,9 +39,8 @@ public class Combinations {
             ans.add(new ArrayList<>(sol));
             return;
         }
-        int left = n;
         int need = k - sol.size();
-        if (left > need) {
+        if (n > need) {
             combine(ans, sol, n - 1, k);
         }
         sol.add(n);

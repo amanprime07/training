@@ -4,11 +4,11 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class HeightOfTree {
-    private static int computeHeightOfTreeIterative(TreeNode root) {
+    private static int computeHeightOfTreeIterative(StringTreeNode root) {
         if (root == null) {
             return 0;
         }
-        Queue<TreeNode> queue = new LinkedList<>();
+        Queue<StringTreeNode> queue = new LinkedList<>();
         int height = 0;
         queue.add(root);
         while (!queue.isEmpty()) {
@@ -27,25 +27,25 @@ public class HeightOfTree {
     }
 
     public static void main(String[] args) {
-        TreeNode root = new TreeNode("1");
-        root.left = new TreeNode("2");
-        root.right = new TreeNode("3");
-        root.left.left = new TreeNode("4");
-        root.left.right = new TreeNode("5");
-        root.right.right = new TreeNode("6");
-        TreeNode root1 = TreeNode.getTree();
+        StringTreeNode root = new StringTreeNode("1");
+        root.left = new StringTreeNode("2");
+        root.right = new StringTreeNode("3");
+        root.left.left = new StringTreeNode("4");
+        root.left.right = new StringTreeNode("5");
+        root.right.right = new StringTreeNode("6");
+        StringTreeNode root1 = StringTreeNode.getTree();
         System.out.println(computeHeightOfTreeIterative(root1));
         System.out.println(computeHeightOfTreeRecursive(root1));
         System.out.println(depthOfTree(root1));
     }
 
-    private static int computeHeightOfTreeRecursive(TreeNode root) {
+    private static int computeHeightOfTreeRecursive(StringTreeNode root) {
         if (root == null)
             return 0;
         return 1 + Math.max(computeHeightOfTreeRecursive(root.left), computeHeightOfTreeRecursive(root.right));
     }
 
-    private static int depthOfTree(TreeNode root) {
+    private static int depthOfTree(StringTreeNode root) {
         if (root == null) {
             return 0;
         }

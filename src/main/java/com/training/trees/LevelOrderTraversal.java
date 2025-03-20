@@ -6,8 +6,8 @@ import java.util.Stack;
 
 public class LevelOrderTraversal {
 
-    private static void levelOrderTraversal(TreeNode root) {
-        Queue<TreeNode> queue = new LinkedList<>();
+    private static void levelOrderTraversal(StringTreeNode root) {
+        Queue<StringTreeNode> queue = new LinkedList<>();
         queue.add(root);
         while (!queue.isEmpty()) {
             root = queue.poll();
@@ -20,7 +20,7 @@ public class LevelOrderTraversal {
     }
 
     public static void main(String[] args) {
-        TreeNode root = TreeNode.getTree();
+        StringTreeNode root = StringTreeNode.getTree();
         System.out.println("TOP TO BOTTOM: ");
         levelOrderTraversal(root);
         System.out.println();
@@ -28,9 +28,9 @@ public class LevelOrderTraversal {
         levelOrderTraversalReverse(root);
     }
 
-    private static void levelOrderTraversalReverse(TreeNode root){
-        Queue<TreeNode> queue = new LinkedList<>();
-        Stack<TreeNode> stack = new Stack<>();
+    private static void levelOrderTraversalReverse(StringTreeNode root){
+        Queue<StringTreeNode> queue = new LinkedList<>();
+        Stack<StringTreeNode> stack = new Stack<>();
         queue.add(root);
         while (!queue.isEmpty()){
             root = queue.poll();

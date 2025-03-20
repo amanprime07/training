@@ -4,7 +4,7 @@ import java.util.Stack;
 
 public class IdenticalTreesVerification {
 
-    private static boolean verifiyIdenticalRecusrsion(TreeNode root1, TreeNode root2) {
+    private static boolean verifiyIdenticalRecusrsion(StringTreeNode root1, StringTreeNode root2) {
         if (root1 != null && root2 != null) {
             verifiyIdenticalRecusrsion(root1.left, root2.left);
             verifiyIdenticalRecusrsion(root1.right, root2.right);
@@ -14,19 +14,19 @@ public class IdenticalTreesVerification {
     }
 
     public static void main(String[] args) {
-        TreeNode root1 = TreeNode.getTree();
-        TreeNode root2 = TreeNode.getTree();
-        TreeNode temp = new TreeNode("G");
+        StringTreeNode root1 = StringTreeNode.getTree();
+        StringTreeNode root2 = StringTreeNode.getTree();
+        StringTreeNode temp = new StringTreeNode("G");
         root2.right.right = temp;
         System.out.println(verifiyIdenticalRecusrsion(root1, root2));
         System.out.println(verifyIdenticalTreeIterative(root1, root2));
     }
 
-    private static boolean verifyIdenticalTreeIterative(TreeNode root1, TreeNode root2) {
+    private static boolean verifyIdenticalTreeIterative(StringTreeNode root1, StringTreeNode root2) {
         if (root1 == null && root2 == null)
             return true;
-        Stack<TreeNode> stack1 = new Stack<>();
-        Stack<TreeNode> stack2 = new Stack<>();
+        Stack<StringTreeNode> stack1 = new Stack<>();
+        Stack<StringTreeNode> stack2 = new Stack<>();
         stack1.push(root1);
         stack2.push(root2);
         while (!stack1.isEmpty() || !stack2.isEmpty()) {

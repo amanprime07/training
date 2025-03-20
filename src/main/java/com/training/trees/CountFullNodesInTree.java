@@ -4,7 +4,7 @@ import java.util.Stack;
 
 public class CountFullNodesInTree {
 
-    private static int countFullNodesRecursive(TreeNode root) {
+    private static int countFullNodesRecursive(StringTreeNode root) {
         if (root == null)
             return 0;
         int count = 0;
@@ -15,17 +15,17 @@ public class CountFullNodesInTree {
     }
 
     public static void main(String[] args) {
-        TreeNode root = TreeNode.getTree();
+        StringTreeNode root = StringTreeNode.getTree();
         System.out.println(countFullNodesRecursive(root));
         System.out.println(countFullNodesIterative(root));
-        TreeNode root1 = TreeNode.getTree1();
+        StringTreeNode root1 = StringTreeNode.getTree1();
         System.out.println(countFullNodesRecursive(root1));
         System.out.println(countFullNodesIterative(root1));
 
     }
 
-    private static int countFullNodesIterative(TreeNode root) {
-        Stack<TreeNode> stack = new Stack<>();
+    private static int countFullNodesIterative(StringTreeNode root) {
+        Stack<StringTreeNode> stack = new Stack<>();
         stack.push(root);
         int count = 0;
         while (!stack.isEmpty()) {

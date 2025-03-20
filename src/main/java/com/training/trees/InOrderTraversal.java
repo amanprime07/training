@@ -4,7 +4,7 @@ import java.util.Stack;
 
 public class InOrderTraversal {
 
-    private static void inOrderTraversalRecursive(TreeNode root) {
+    private static void inOrderTraversalRecursive(StringTreeNode root) {
         if (root == null)
             return;
         inOrderTraversalRecursive(root.left);
@@ -13,14 +13,14 @@ public class InOrderTraversal {
     }
 
     public static void main(String[] args) {
-        TreeNode root = TreeNode.getTree();
+        StringTreeNode root = StringTreeNode.getTree();
         inOrderTraversalRecursive(root);
         System.out.println();
         inOrderTraversalIterative(root);
     }
 
-    private static void inOrderTraversalIterative(TreeNode root) {
-        Stack<TreeNode> stack = new Stack<>();
+    private static void inOrderTraversalIterative(StringTreeNode root) {
+        Stack<StringTreeNode> stack = new Stack<>();
         while (!stack.isEmpty() || root != null) {
             while (root != null) {
                 stack.push(root);

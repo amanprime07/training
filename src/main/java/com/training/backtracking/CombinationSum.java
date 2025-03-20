@@ -6,31 +6,63 @@ import java.util.List;
 public class CombinationSum {
 
     public static void main(String[] args) {
-        int[]arr = {2, 3, 6, 7};
+        int[] arr = {2, 3, 6, 7};
         int target = 7;
-        var res = combinationSum(arr, target);
+        long start = System.nanoTime();
+        var res = combinationSum1(arr, target);
+        long dr = System.nanoTime() - start;
+        System.out.println("TimeTaken: " + dr / (1000));
+        start = System.nanoTime();
+        res = combinationSum2(arr, target);
+        dr = System.nanoTime() - start;
+        System.out.println("TimeTaken: " + dr / (1000));
         System.out.println(res);
     }
 
-    private static List<List<Integer>> combinationSum(int[] candidates, int target) {
+    private static List<List<Integer>> combinationSum2(int[] candidates, int target) {
         List<List<Integer>> ans = new ArrayList<>();
         List<Integer> sol = new ArrayList<>();
-        combinationSum(ans, sol, 0, 0, candidates, target);
+        combinationSum2(ans, sol, 0, target, candidates);
         return ans;
     }
 
-    private static void combinationSum(List<List<Integer>> ans, List<Integer> sol, int n, int sum, int[] nums, int target) {
+    private static List<List<Integer>> combinationSum1(int[] candidates, int target) {
+        List<List<Integer>> ans = new ArrayList<>();
+        List<Integer> sol = new ArrayList<>();
+        combinationSum1(ans, sol, 0, 0, candidates, target);
+        return ans;
+    }
+
+    private static void combinationSum1(List<List<Integer>> ans, List<Integer> sol, int pos, int sum, int[] nums, int target) {
         if (sum == target) {
             ans.add(new ArrayList<>(sol));
             return;
         }
-        if (sum > target || n >= nums.length) {
+        if (sum > target || pos >= nums.length) {
             return;
         }
-        combinationSum(ans, sol, n + 1, sum, nums, target);
-        sol.add(nums[n]);
-        sum = sum + nums[n];
-        combinationSum(ans, sol, n, sum, nums, target);
+        combinationSum1(ans, sol, pos + 1, sum, nums, target);
+        sol.add(nums[pos]);
+        sum = sum + nums[pos];
+        combinationSum1(ans, sol, pos, sum, nums, target);
         sol.removeLast();
+    }
+
+    private static void combinationSum2(List<List<Integer>> ans, List<Integer> sol, int pos, int target, int[] nums) {
+        if (target == 0) {
+            ans.add(new ArrayList<>(sol));
+            return;
+        }
+
+        if (pos >= nums.length) {
+            return;
+        }
+
+        if (nums[pos] <= target) {
+            sol.add(nums[pos]);
+            combinationSum2(ans, sol, pos, target - nums[pos], nums);
+            sol.removeLast();
+        }
+        combinationSum2(ans, sol, pos + 1, target, nums);
     }
 }

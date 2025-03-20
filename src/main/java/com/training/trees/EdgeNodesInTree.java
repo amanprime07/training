@@ -3,7 +3,7 @@ package com.training.trees;
 import java.util.Stack;
 
 public class EdgeNodesInTree {
-    private static void printLeftEdgeNodes(TreeNode root) {
+    private static void printLeftEdgeNodes(StringTreeNode root) {
         while (root != null) {
             if (root.left != null || root.right != null)
                 System.out.println(root.value);
@@ -15,7 +15,7 @@ public class EdgeNodesInTree {
         }
     }
 
-    private static void printLeafNodes(TreeNode root) {
+    private static void printLeafNodes(StringTreeNode root) {
         if (root == null)
             return;
         if (root.right == null && root.left == null)
@@ -24,8 +24,8 @@ public class EdgeNodesInTree {
         printLeafNodes(root.right);
     }
 
-    private static void printRightEdgeNodes(TreeNode root) {
-        Stack<TreeNode> stack = new Stack<>();
+    private static void printRightEdgeNodes(StringTreeNode root) {
+        Stack<StringTreeNode> stack = new Stack<>();
         while (root != null) {
             if (root.left != null || root.right != null)
                 stack.push(root);
@@ -41,11 +41,11 @@ public class EdgeNodesInTree {
     }
 
     public static void main(String[] args) {
-        TreeNode root = TreeNode.getTree();
+        StringTreeNode root = StringTreeNode.getTree();
         printNodesAntiClockWise(root);
     }
 
-    private static void printNodesAntiClockWise(TreeNode root) {
+    private static void printNodesAntiClockWise(StringTreeNode root) {
         printLeftEdgeNodes(root);
         printLeafNodes(root);
         printRightEdgeNodes(root);
