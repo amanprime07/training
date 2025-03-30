@@ -1,26 +1,26 @@
 package com.training.linkedlist.medium;
 
-import com.training.linkedlist.Node;
+import com.training.linkedlist.ListNode;
 
 public class SegregateOddEvenNodes {
 
     public static void main(String[] args) {
         int[] arr = {1, 2, 3, 4, 5};
-        Node head = Node.createList(arr);
+        ListNode head = ListNode.createList(arr);
         head = segregate(head);
         head.print();
     }
 
-    private static Node segregate(Node head) {
+    private static ListNode segregate(ListNode head) {
         if (head == null || head.next == null) {
             return head;
         }
 
-        Node oddHead = new Node(-1);
-        Node oddTail = oddHead;
-        Node evenHead = new Node(-1);
-        Node evenTail = evenHead;
-        Node curr = head, temp;
+        ListNode oddHead = new ListNode(-1);
+        ListNode oddTail = oddHead;
+        ListNode evenHead = new ListNode(-1);
+        ListNode evenTail = evenHead;
+        ListNode curr = head, temp;
 
         while (curr != null) {
             temp = curr.next;
@@ -44,7 +44,7 @@ public class SegregateOddEvenNodes {
         return evenHead;
     }
 
-    private static Node append(Node tail, Node n) {
+    private static ListNode append(ListNode tail, ListNode n) {
         if (tail == null) {
             tail = n;
         }

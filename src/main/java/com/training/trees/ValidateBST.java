@@ -5,73 +5,60 @@ import java.util.Stack;
 public class ValidateBST {
 
     public static void main(String[] args) {
-        Node root = new Node(5);
-        root.left = new Node(3);
-        root.right = new Node(12);
-        root.left.left = new Node(1);
-        root.right.left = new Node(11);
-        root.right.right = new Node(13);
+        TreeNode root = TreeNode.bst1();
         System.out.println(isValid(root));
         System.out.println(isValidStack(root));
-
+        root.left.left.left = new TreeNode(14);
+        System.out.println(isValid(root));
+        System.out.println(isValidStack(root));
     }
 
-    private static boolean isValid(Node root) {
-        return isValid(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    private static boolean isValid(TreeNode node) {
+        return isValid(node, Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
 
-    private static boolean isValid(Node root, int min, int max) {
+    private static boolean isValid(TreeNode root, int minValue, int maxValue) {
         if (root == null) {
             return true;
         }
-        if (!(min < root.value && root.value < max)) {
+        if (root.val < minValue || root.val > maxValue) {
             return false;
         }
-        return isValid(root.left, min, root.value) && isValid(root.right, root.value, max);
+        return isValid(root.left, minValue, root.val) && isValid(root.right, root.val, maxValue);
     }
 
-    private static boolean isValidStack(Node root) {
-        if (root == null) {
-            return true;
-        }
+    private static boolean isValidStack(TreeNode root) {
         Stack<Triplet> stack = new Stack<>();
         stack.push(new Triplet(root, Integer.MIN_VALUE, Integer.MAX_VALUE));
         while (!stack.isEmpty()) {
             Triplet t = stack.pop();
-            Node n = t.val;
-            if (!(t.min < n.value && n.value < t.max)) {
+            TreeNode node = t.node;
+            int minValue = t.minValue;
+            int maxValue = t.maxValue;
+            if (node.val < minValue || node.val > maxValue) {
                 return false;
-            } else {
-                if (n.left != null) {
-                    stack.push(new Triplet(n.left, t.min, n.value));
-                }
-                if (n.right != null) {
-                    stack.push(new Triplet(n.right, n.value, t.max));
-                }
+            }
+            if (node.right != null) {
+                stack.push(new Triplet(node.right, node.val, maxValue));
+            }
+            if (node.left != null) {
+                stack.push(new Triplet(node.left, minValue, node.val));
             }
         }
         return true;
     }
 
     private static class Triplet {
-        Node val;
-        int min;
-        int max;
+        TreeNode node;
+        int minValue;
+        int maxValue;
 
-        public Triplet(Node val, int min, int max) {
-            this.val = val;
-            this.min = min;
-            this.max = max;
+        public Triplet(TreeNode node, int minValue, int maxValue) {
+            this.node = node;
+            this.minValue = minValue;
+            this.maxValue = maxValue;
         }
     }
 
-    private static class Node {
-        Node left;
-        Node right;
-        int value;
 
-        public Node(int value) {
-            this.value = value;
-        }
-    }
 }

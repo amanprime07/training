@@ -1,27 +1,27 @@
 package com.training.linkedlist;
 
-public class Node {
+public class ListNode {
     public int v;
-    public Node next;
+    public ListNode next;
 
-    public Node(int v) {
+    public ListNode(int v) {
         this.v = v;
         this.next = null;
     }
 
-    public Node(int v, Node n) {
+    public ListNode(int v, ListNode n) {
         this.v = v;
         this.next = n;
     }
 
-    public static Node createList(int[] arr) {
+    public static ListNode createList(int[] arr) {
         if (arr.length == 0) {
             return null;
         }
-        Node head = new Node(arr[0]);
-        Node curr = head;
+        ListNode head = new ListNode(arr[0]);
+        ListNode curr = head;
         for (int i = 1; i < arr.length; i++) {
-            curr.next = new Node(arr[i]);
+            curr.next = new ListNode(arr[i]);
             curr = curr.next;
         }
         return head;
@@ -33,9 +33,9 @@ public class Node {
     }
 
     public void print() {
-        Node temp = this;
+        ListNode temp = this;
         while (temp != null) {
-            System.out.print(temp.v + " ");
+            System.out.print(temp.v + "->");
             temp = temp.next;
         }
         System.out.println();

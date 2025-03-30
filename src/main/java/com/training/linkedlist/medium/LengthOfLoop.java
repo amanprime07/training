@@ -1,6 +1,6 @@
 package com.training.linkedlist.medium;
 
-import com.training.linkedlist.Node;
+import com.training.linkedlist.ListNode;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,11 +8,11 @@ import java.util.Map;
 public class LengthOfLoop {
 
     public static void main(String[] args) {
-        Node head = new Node(1);
-        Node second = new Node(2);
-        Node third = new Node(3);
-        Node fourth = new Node(4);
-        Node fifth = new Node(5);
+        ListNode head = new ListNode(1);
+        ListNode second = new ListNode(2);
+        ListNode third = new ListNode(3);
+        ListNode fourth = new ListNode(4);
+        ListNode fifth = new ListNode(5);
 
         head.next = second;
         second.next = third;
@@ -25,9 +25,9 @@ public class LengthOfLoop {
         System.out.println(optimized(head));
     }
 
-    private static int optimized(Node head) {
-        Node slow = head;
-        Node fast = head;
+    private static int optimized(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head;
         while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
@@ -39,7 +39,7 @@ public class LengthOfLoop {
         return 0;
     }
 
-    private static int findLength(Node slow, Node fast) {
+    private static int findLength(ListNode slow, ListNode fast) {
         int count = 1;
         while (slow != fast) {
             count++;
@@ -48,9 +48,9 @@ public class LengthOfLoop {
         return count;
     }
 
-    private static int bruteForce(Node head) {
-        Map<Node, Integer> map = new HashMap<>();
-        Node temp = head;
+    private static int bruteForce(ListNode head) {
+        Map<ListNode, Integer> map = new HashMap<>();
+        ListNode temp = head;
         int count = 0;
         while (temp != null) {
             count++;

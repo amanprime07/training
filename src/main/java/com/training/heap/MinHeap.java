@@ -45,7 +45,7 @@ public class MinHeap {
         int idx = 0;
         while (hasLeftChild(idx)) {
             int smallChildIdx = leftChildIdx(idx);
-            if (hasRightChild(idx) && arr[smallChildIdx] > rightChild(idx)) {
+            if (hasRightChild(idx) && leftChild(idx) > rightChild(idx)) {
                 smallChildIdx = rightChildIdx(idx);
             }
 

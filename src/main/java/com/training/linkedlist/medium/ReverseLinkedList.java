@@ -1,6 +1,6 @@
 package com.training.linkedlist.medium;
 
-import com.training.linkedlist.Node;
+import com.training.linkedlist.ListNode;
 
 import java.util.Stack;
 
@@ -8,7 +8,7 @@ public class ReverseLinkedList {
 
     public static void main(String[] args) {
         int[] arr = {1, 2, 3, 4};
-        Node head = Node.createList(arr);
+        ListNode head = ListNode.createList(arr);
         head.print();
         head = reverse(head);
         head.print();
@@ -19,12 +19,12 @@ public class ReverseLinkedList {
         head.print();
     }
 
-    private static Node reverse(Node head) {
+    private static ListNode reverse(ListNode head) {
         if (head == null || head.next == null) {
             return head;
         }
 
-        Node prev = null, temp, curr = head;
+        ListNode prev = null, temp, curr = head;
         // 1->2->3->4->null
         while (curr != null) {
             temp = curr.next;
@@ -37,19 +37,19 @@ public class ReverseLinkedList {
     }
 
 
-    private static Node reverseRecursive(Node head) {
+    private static ListNode reverseRecursive(ListNode head) {
         if (head == null || head.next == null) {
             return head;
         }
-        Node newHead = reverseRecursive(head.next);
-        Node temp = head.next;
+        ListNode newHead = reverseRecursive(head.next);
+        ListNode temp = head.next;
         temp.next = head;
         head.next = null;
         return newHead;
     }
 
-    private static Node bruteForce(Node head) {
-        Node temp = head;
+    private static ListNode bruteForce(ListNode head) {
+        ListNode temp = head;
         Stack<Integer> stack = new Stack<>();
         while (temp != null) {
             stack.push(temp.v);

@@ -1,6 +1,6 @@
 package com.training.linkedlist.medium;
 
-import com.training.linkedlist.Node;
+import com.training.linkedlist.ListNode;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,11 +8,11 @@ import java.util.Map;
 public class DetectLoop {
 
     public static void main(String[] args) {
-        Node head = new Node(1);
-        Node second = new Node(2);
-        Node third = new Node(3);
-        Node fourth = new Node(4);
-        Node fifth = new Node(5);
+        ListNode head = new ListNode(1);
+        ListNode second = new ListNode(2);
+        ListNode third = new ListNode(3);
+        ListNode fourth = new ListNode(4);
+        ListNode fifth = new ListNode(5);
 
         head.next = second;
         second.next = third;
@@ -25,9 +25,9 @@ public class DetectLoop {
         System.out.println(detectLoop(head));
     }
 
-    private static boolean bruteForce(Node head) {
-        Map<Node, Boolean> map = new HashMap<>();
-        Node temp = head;
+    private static boolean bruteForce(ListNode head) {
+        Map<ListNode, Boolean> map = new HashMap<>();
+        ListNode temp = head;
         while (temp != null) {
             if (map.containsKey(temp)) {
                 return true;
@@ -39,9 +39,9 @@ public class DetectLoop {
         return false;
     }
 
-    private static boolean detectLoop(Node head) {
-        Node slow = head;
-        Node fast = head;
+    private static boolean detectLoop(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head;
 
         while (fast != null && fast.next != null) {
             slow = slow.next;

@@ -4,7 +4,7 @@ public class PeakElement {
     public static void main(String[] args) {
         int[] arr = {1, 2, 3, 4, 5, 4, 3, 1};
         System.out.println(arr[peak(arr)]);
-        System.out.println(arr[booleanSearch(arr)]);
+        System.out.println(arr[binarySearch(arr)]);
     }
 
     private static int peak(int[] arr) {
@@ -16,7 +16,7 @@ public class PeakElement {
         return -1;
     }
 
-    private static int booleanSearch(int[] arr) {
+    private static int binarySearch(int[] arr) {
         int size = arr.length;
         if (size == 1 || arr[0] > arr[1]) {
             return 0;

@@ -1,20 +1,20 @@
 package com.training.linkedlist.medium;
 
-import com.training.linkedlist.Node;
+import com.training.linkedlist.ListNode;
 
 public class MiddleElement {
 
     public static void main(String[] args) {
         int[] arr = {1, 2, 3, 4, 5};
-        Node head = Node.createList(arr);
+        ListNode head = ListNode.createList(arr);
         System.out.println(bruteForce(head));
         System.out.println(middleNode(head));
     }
 
 
-    private static Node bruteForce(Node head) {
+    private static ListNode bruteForce(ListNode head) {
         int count = 0;
-        Node temp = head;
+        ListNode temp = head;
         while (temp != null) {
             count++;
             temp = temp.next;
@@ -28,12 +28,12 @@ public class MiddleElement {
         return temp;
     }
 
-    private static Node middleNode(Node head) {
+    private static ListNode middleNode(ListNode head) {
         if (head == null || head.next == null) {
             return head;
         }
-        Node slow = head;
-        Node fast = head;
+        ListNode slow = head;
+        ListNode fast = head;
         while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;

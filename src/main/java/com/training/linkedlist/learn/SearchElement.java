@@ -1,23 +1,23 @@
 package com.training.linkedlist.learn;
 
-import com.training.linkedlist.Node;
+import com.training.linkedlist.ListNode;
 
 public class SearchElement {
 
     public static void main(String[] args) {
         int[] arr = {1, 2, 3, 4};
 
-        Node head = Node.createList(arr);
-        Node s = search(head, 3);
+        ListNode head = ListNode.createList(arr);
+        ListNode s = search(head, 3);
         System.out.println(s);
 
     }
 
-    private static Node search(Node head, int v) {
+    private static ListNode search(ListNode head, int v) {
         if (head == null) {
             return null;
         }
-        Node temp = head;
+        ListNode temp = head;
         while (temp != null && temp.v != v) {
             temp = temp.next;
         }

@@ -23,7 +23,7 @@ public class LetterCombinations {
         for (int i = 0; i < s.length(); i++) {
             sol.append(s.charAt(i));
             letterCombinations(ans, sol, n + 1, map, digits);
-            sol.deleteCharAt(sol.length()-1);
+            sol.deleteCharAt(sol.length() - 1);
         }
     }
 
