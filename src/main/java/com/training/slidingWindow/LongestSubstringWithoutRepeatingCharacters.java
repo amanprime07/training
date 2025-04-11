@@ -6,7 +6,7 @@ import java.util.Set;
 public class LongestSubstringWithoutRepeatingCharacters {
 
     public static void main(String[] args) {
-        String s = "abcabcbb";
+        String s = "abcabcdbb";
         System.out.println(longestSubstringWithoutRepeats(s));
         s = "bbbbbb";
         System.out.println(longestSubstringWithoutRepeats(s));
@@ -24,7 +24,7 @@ public class LongestSubstringWithoutRepeatingCharacters {
         for (int r = 0; r < s.length(); r++) {
             char c = s.charAt(r);
             while (l <= r && set.contains(c)) {
-                set.remove(c);
+                set.remove(s.charAt(l));
                 l++;
             }
             set.add(c);

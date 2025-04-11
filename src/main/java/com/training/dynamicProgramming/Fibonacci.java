@@ -1,4 +1,4 @@
-package com.training.basics;
+package com.training.dynamicProgramming;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -2,12 +2,12 @@ package com.striver79;
 
 import com.training.trees.TreeNode;
 
-public class LowestCommonAncestor {
+public class LowestCommonAncestorBST {
 
     public static void main(String[] args) {
         TreeNode root = TreeNode.bst1();
-        System.out.println(lowestCommonAncestor(root, root.left, root.right));
-        System.out.println(lowestCommonAncestor(root, root.left.left, root.left.right));
+        System.out.println(lowestCommonAncestor(root, root.left, root.right).val); // 4
+        System.out.println(lowestCommonAncestor(root, root.left.left, root.left.right).val); //2
     }
 
     private static TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
