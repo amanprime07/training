@@ -11,14 +11,14 @@ public class MinCostClimbingStairs {
         int[] arr = new int[]{10, 15, 20};
         System.out.println(bruteForce(arr));
         System.out.println(memoization(arr));
-        System.out.println(bottomUpDp(arr));
+        System.out.println(tabulation(arr));
         System.out.println(bottomUp(arr));
 
         memo.clear(); // to clear cache for test case
         arr = new int[]{1, 100, 1, 1, 1, 100, 1, 1, 100, 1};
         System.out.println(bruteForce(arr));
         System.out.println(memoization(arr));
-        System.out.println(bottomUpDp(arr));
+        System.out.println(tabulation(arr));
         System.out.println(bottomUp(arr));
     }
 
@@ -38,7 +38,7 @@ public class MinCostClimbingStairs {
         return oneBack;
     }
 
-    private static int bottomUpDp(int[] cost) {
+    private static int tabulation(int[] cost) {
         if (cost.length < 2) {
             return 0;
         }

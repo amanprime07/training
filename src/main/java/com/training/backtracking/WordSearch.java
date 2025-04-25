@@ -19,7 +19,7 @@ Example 3:
  */
 public class WordSearch {
 
-    static int[][] dir = {{0, 1}, {0, -1}, {-1, 0}, {1, 0}};
+    static int[][] dirs = {{0, 1}, {0, -1}, {-1, 0}, {1, 0}};
 
     public static void main(String[] args) {
         char[][] board = {
@@ -28,7 +28,17 @@ public class WordSearch {
                 {'A', 'D', 'E', 'E'}
         };
         System.out.println(exists(board, "ABCCED"));
+        board = new char[][]{
+                {'A', 'B', 'C', 'E'},
+                {'S', 'F', 'C', 'S'},
+                {'A', 'D', 'E', 'E'}
+        };
         System.out.println(exists(board, "SEE"));
+        board = new char[][]{
+                {'A', 'B', 'C', 'E'},
+                {'S', 'F', 'C', 'S'},
+                {'A', 'D', 'E', 'E'}
+        };
         System.out.println(exists(board, "ABCB"));
     }
 
@@ -39,7 +49,7 @@ public class WordSearch {
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
                 if (board[i][j] == word.charAt(0)) {
-                    if (backTrack(board, word, 0, 0, 0)) {
+                    if (backTrack(board, word, 0, i, j)) {
                         return true;
                     }
                 }
@@ -59,9 +69,9 @@ public class WordSearch {
         board[m][n] = '$';
         int rows = board.length;
         int cols = board[0].length;
-        for (int[] adv : dir) {
-            int r = m + adv[0];
-            int c = n + adv[1];
+        for (int[] dir : dirs) {
+            int r = m + dir[0];
+            int c = n + dir[1];
             if ((r < 0 || r >= rows) || (c < 0 || c >= cols)) {
                 continue;
             }

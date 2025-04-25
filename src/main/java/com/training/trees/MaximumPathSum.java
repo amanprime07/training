@@ -7,6 +7,13 @@ public class MaximumPathSum {
         System.out.println(maxPathSum(node));
     }
 
+    /*
+     *      1
+     *    /   \
+     *   2     3
+     *  /\    /\
+     *-4 -5  6 7
+     * */
     private static int maxPathSum(TreeNode root) {
         int[] maxSum = {Integer.MIN_VALUE};
         maxPathSum(root, maxSum);

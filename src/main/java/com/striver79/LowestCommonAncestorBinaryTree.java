@@ -7,6 +7,8 @@ public class LowestCommonAncestorBinaryTree {
     public static void main(String[] args) {
         TreeNode root = TreeNode.tree1();
         System.out.println(lca(root, root.left.left, root.left.right).val);
+        System.out.println(lca(root, root.left.left, root.right.right).val);
+        System.out.println(lca(root, root.right.right, root.right.right).val);
     }
 
 
