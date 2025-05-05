@@ -3,7 +3,6 @@ package com.striver79;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public class SubSetSumK {
 
@@ -12,10 +11,12 @@ public class SubSetSumK {
         System.out.println(subsetSumK(arr, 4));
         System.out.println(memoization(arr, 4));
         System.out.println(tabulation(arr, 4));
+        System.out.println();
         memo.clear();
         System.out.println(subsetSumK(arr, 3));
         System.out.println(memoization(arr, 3));
         System.out.println(tabulation(arr, 3));
+        System.out.println();
         memo.clear();
         arr = new int[]{2, 5, 1, 6, 7};
         System.out.println(subsetSumK(arr, 4));
@@ -31,25 +32,10 @@ public class SubSetSumK {
         return memoization(arr, target, 0);
     }
 
-    private static class Pair {
-        int i;
-        int k;
-
-        Pair(int p, int t) {
-            i = p;
-            k = t;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (!(o instanceof Pair pair)) return false;
-            return i == pair.i && k == pair.k;
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(i, k);
-        }
+    private record Pair(
+            int i,
+            int k
+    ) {
     }
 
     private static boolean subsetSumK(int[] arr, int target, int pos) {
@@ -84,7 +70,7 @@ public class SubSetSumK {
     }
 
 
-//        1, 2, 3, 4
+    //        1, 2, 3, 4
 //    0 [[t, t, t, t]
 //    1  [t, f, f, f]
 //    2  [f, f, f, f]
@@ -108,11 +94,6 @@ public class SubSetSumK {
             }
         }
         return dp[target][length - 1];
-    }
-
-    private static boolean topDown(int[] arr, int target) {
-
-        return false;
     }
 
 }

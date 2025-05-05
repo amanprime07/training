@@ -9,6 +9,7 @@ import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.net.http.HttpResponse.BodyHandlers;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -73,7 +74,7 @@ public class TopRatedSeriesByGenre {
     private static Response getResponse(HttpClient client, String uri) throws Exception {
         try {
             HttpRequest request = HttpRequest.newBuilder().uri(new URI(uri)).build();
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
             return gson.fromJson(response.body(), Response.class);
         } catch (URISyntaxException e) {
             System.err.println(e);
@@ -95,9 +96,9 @@ public class TopRatedSeriesByGenre {
         @Override
         public int compareTo(TvSeries o) {
             if (this.imdbRating == o.imdbRating) {
-                return this.name.compareTo(o.name);
+                return this.name.compareTo(o.name); // asc
             }
-            return Double.compare(o.imdbRating, this.imdbRating);
+            return Double.compare(o.imdbRating, this.imdbRating); // desc
         }
     }
 }

@@ -15,6 +15,8 @@ public class Overlap {
         }
     }
 //    L1, R1, L2, R2
+
+//    Start1, End1, Start2, End2
     private static String overlap(int[]arr){
         if(arr[0]<=arr[3] && arr[2]<=arr[1]){
             return "YES";

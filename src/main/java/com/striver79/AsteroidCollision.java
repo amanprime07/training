@@ -12,6 +12,8 @@ public class AsteroidCollision {
         System.out.println(Arrays.toString(asteroidCollision(arr)));
         arr = new int[]{10, 2, -5, 10, -20, 20};
         System.out.println(Arrays.toString(asteroidCollision(arr)));
+        arr = new int[]{-2, -1, 1, 2};
+        System.out.println(Arrays.toString(asteroidCollision(arr)));
     }
 
     /*
@@ -27,15 +29,14 @@ public class AsteroidCollision {
             if (asteroid > 0) {
                 stack.push(asteroid);
             } else {
-                while (!stack.isEmpty() && stack.peek() < Math.abs(asteroid)) {
+                while (!stack.isEmpty() && stack.peek() > 0 && stack.peek() < Math.abs(asteroid)) {
                     stack.pop();
+                }
+                if (stack.isEmpty() || stack.peek() < 0) {
+                    stack.push(asteroid);
                 }
                 if (!stack.isEmpty() && stack.peek() == Math.abs(asteroid)) {
                     stack.pop();
-                    continue;
-                }
-                if (stack.isEmpty()) {
-                    stack.push(asteroid);
                 }
             }
         }
