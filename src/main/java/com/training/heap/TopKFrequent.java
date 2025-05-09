@@ -11,6 +11,10 @@ public class TopKFrequent {
         System.out.println(Arrays.toString(topKFrequentArray(arr, k)));
         arr = new int[]{4, 1, -1, 2, -1, 2, 3};
         System.out.println(Arrays.toString(topKFrequentArray(arr, k)));
+
+        arr = new int[]{4};
+        k = 1;
+        System.out.println(Arrays.toString(topKFrequentArray(arr, k)));
     }
 
     private static int[] topKFrequentArray(int[] nums, int k) {
@@ -25,7 +29,7 @@ public class TopKFrequent {
             list.add(i, new ArrayList<>());
         }
         for (Map.Entry<Integer, Integer> e : freq.entrySet()) {
-            List<Integer> l = list.get(e.getValue());
+            List<Integer> l = list.get(e.getValue() - 1);
             l.add(e.getKey());
         }
         int[] arr = new int[k];

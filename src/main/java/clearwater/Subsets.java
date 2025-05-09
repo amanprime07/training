@@ -15,17 +15,17 @@ public class Subsets {
 
     private static List<String> subsets(String s) {
         List<String> ans = new ArrayList<>();
-        subset(0, s, "", ans);
+        subset(0, s, new StringBuilder(), ans);
         Collections.sort(ans);
         return ans;
     }
 
-    private static void subset(int i, String s, String temp, List<String> ans) {
+    private static void subset(int i, String s, StringBuilder temp, List<String> ans) {
         if (i == s.length()) {
-            ans.add(temp);
+            ans.add(temp.toString());
             return;
         }
         subset(i + 1, s, temp, ans);
-        subset(i + 1, s, temp + s.charAt(i), ans);
+        subset(i + 1, s, temp.append(s.charAt(i)), ans);
     }
 }

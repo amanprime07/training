@@ -1,13 +1,14 @@
 package com.training.slidingWindow;
 
-public class LongestRepeatingCharacterReplacement {
+public class CharacterReplacement {
 
     public static void main(String[] args) {
         String s = "ABAC";
         System.out.println(characterReplacement(s, 2));
 
-        String s1 = "ABACAC";
-        System.out.println(characterReplacement(s1, 3));
+        String s1 = "EOEMQLLQTRQDDCOERARHGAAARRBKCCMFTDAQOLOKARBIJBISTGNKBQGKKTALSQNFSABASNOPBMMGDIOETPTDICRBOMBAAHINTFLH";
+        System.out.println(characterReplacement(s1, 7));
+
     }
 
     private static int characterReplacement(String s, int k) {
@@ -20,8 +21,9 @@ public class LongestRepeatingCharacterReplacement {
             counter[c - 'A'] += 1;
             window = r - l + 1;
             while (l <= r && window - max(counter) > k) {
-                counter[c - 'A'] -= 1;
+                counter[s.charAt(l) - 'A'] -= 1;
                 l++;
+                window = r - l + 1;
             }
             window = r - l + 1;
             if (maxWindow < window) {
@@ -33,7 +35,7 @@ public class LongestRepeatingCharacterReplacement {
     }
 
     private static int max(int[] arr) {
-        int max = Integer.MIN_VALUE;
+        int max = 0;
         for (int j : arr) {
             max = Math.max(max, j);
         }

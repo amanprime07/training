@@ -29,9 +29,6 @@ public class MaxSumSubArray {
                 end = i;
                 maxSum = sum;
             }
-//            if (sum < 0) {
-//                sum = 0;
-//            }
         }
         return new int[]{start, end};
     }

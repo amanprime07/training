@@ -18,7 +18,7 @@ public class LongestCommonSubsequence {
         System.out.println(ans + " in " + timeTaken);
 
         start = System.nanoTime();
-        ans = bottomUpDb(t1, t2);
+        ans = bottomUpDp(t1, t2);
         timeTaken = System.nanoTime() - start;
         System.out.println(ans + " in " + timeTaken);
     }
@@ -77,7 +77,7 @@ public class LongestCommonSubsequence {
      * T2 = "ace"
      *
      * */
-    private static int bottomUpDb(String text1, String text2) {
+    private static int bottomUpDp(String text1, String text2) {
         int l1 = text1.length();
         int l2 = text2.length();
         int[][] dp = new int[l1 + 1][l2 + 1];

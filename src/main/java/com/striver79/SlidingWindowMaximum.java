@@ -15,7 +15,7 @@ public class SlidingWindowMaximum {
         k = 1;
         System.out.println(Arrays.toString(maxSlidingWindow(arr, k)));
 
-        arr = new int[]{5,4,3,2,1};
+        arr = new int[]{5, 4, 3, 2, 1};
         k = 2;
         System.out.println(Arrays.toString(maxSlidingWindow(arr, k)));
         arr = new int[]{1, 3, 1, 2, 0, 5};
@@ -28,7 +28,7 @@ public class SlidingWindowMaximum {
         int[] ans = new int[n - k + 1];
         Deque<Integer> q = new LinkedList<>();
         for (int i = 0; i < n; i++) {
-            if (!q.isEmpty() && q.peek() <= i-k) {
+            if (!q.isEmpty() && q.peek() <= i - k) {
                 q.poll();
             }
             while (!q.isEmpty() && arr[q.peekLast()] < arr[i]) {
