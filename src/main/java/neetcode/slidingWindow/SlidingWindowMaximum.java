@@ -27,56 +27,62 @@ public class SlidingWindowMaximum {
         ans = maximumUsingDeque(arr, 1);
         dr = System.nanoTime() - start;
         System.out.println(Arrays.toString(ans) + " time -> " + dr);
+
+        arr = new int[]{1, -1};
+        start = System.nanoTime();
+        ans = maximumUsingHeap(arr, 1);
+        dr = System.nanoTime() - start;
+        System.out.println(Arrays.toString(ans) + " time -> " + dr);
+
+
+        start = System.nanoTime();
+        ans = maximumUsingDeque(arr, 1);
+        dr = System.nanoTime() - start;
+        System.out.println(Arrays.toString(ans) + " time -> " + dr);
     }
 
-    private record Pair(int v, int idx) {
+    private record Pair(int v, int i) {
     }
 
-    /*
-     * {1, 3, -1, -3, 5, 3, 6, 7};
-     *
-     *
-     * [1,3]
-     * */
-    private static int[] maximumUsingDeque(int[] arr, int k) {
-        Deque<Integer> q = new LinkedList<>();
-        int[] ans = new int[arr.length - k + 1];
-
-        for (int i = 0; i < arr.length; i++) {
-            while (!q.isEmpty() && q.peek() < i - k) {
+    private static int[] maximumUsingHeap(int[] nums, int k) {
+        int size = nums.length;
+        int[] ans = new int[size - k + 1];
+        Queue<Pair> q = new PriorityQueue<>((a, b) -> b.v - a.v); // max heap
+        for (int r = 0; r < size; r++) {
+            q.offer(new Pair(nums[r], r));
+            while (!q.isEmpty() && r - q.peek().i > k - 1) {
                 q.poll();
             }
-            while (!q.isEmpty() && arr[q.peekLast()] < arr[i]) {
-                q.pollLast();
-            }
-            q.offer(i);
-            if (!q.isEmpty() && i - k + 1 >= 0) {
-                ans[i - k + 1] = arr[q.peek()];
+            if (!q.isEmpty() && r - k + 1 >= 0) {
+                ans[r - k + 1] = q.peek().v;
             }
         }
         return ans;
     }
 
-    private static int[] maximumUsingHeap(int[] arr, int k) {
-        Queue<Pair> q = new PriorityQueue<>((a, b) -> b.v - a.v);// max heap
-        int[] ans = new int[arr.length - k + 1];
-        int r = 0;
-        for (; r < k; r++) {
-            q.offer(new Pair(arr[r], r));
-        }
-        if (!q.isEmpty()) {
-            ans[0] = (q.peek().v);
-        }
+    /*
+     * idx = 0, 1,  2,  3, 4, 5, 6, 7
+     * ele = 1, 3, -1, -3, 5, 3, 6, 7
+     * */
+    private static int[] maximumUsingDeque(int[] nums, int k) {
+        int l = nums.length;
+        int[] ans = new int[l - k + 1];
+        Deque<Integer> deque = new LinkedList<>();
+        for (int i = 0; i < l; i++) {
+            // push element in increasing order.
+            while (!deque.isEmpty() && nums[deque.peekLast()] < nums[i]) {
+                deque.pollLast();
+            }
+            deque.offer(i);
 
-        while (r < arr.length) {
-            while (!q.isEmpty() && q.peek().idx < r - k) {
-                q.poll();
+            // check valid window
+            while (!deque.isEmpty() && deque.peek() < i - k + 1) {
+                deque.poll();
             }
-            q.offer(new Pair(arr[r], r));
-            if (!q.isEmpty()) {
-                ans[r - k + 1] = (q.peek().v);
+
+            if (!deque.isEmpty() && i - k + 1 >= 0) {
+                ans[i - k + 1] = nums[deque.peek()];
             }
-            r++;
         }
         return ans;
     }

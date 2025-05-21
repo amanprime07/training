@@ -6,6 +6,7 @@ public class PermutationInString {
     public static void main(String[] args) {
         String s1 = "ab", s2 = "eidbaooo";
         System.out.println(checkInclusion(s1, s2));
+
         s1 = "ab";
         s2 = "eidboaoo";
         System.out.println(checkInclusion(s1, s2));
@@ -19,56 +20,47 @@ public class PermutationInString {
         System.out.println(checkInclusion(s1, s2));
     }
 
-
-    //cab
-    //abce
-//    a,b,c,d,e
-//    1,1,1,0,0
-//    1,1,1,0,1
-
     private static boolean checkInclusion(String s1, String s2) {
         if (s1.length() > s2.length()) {
             return false;
         }
-        int[] map1 = new int[26];
-        int[] map2 = new int[26];
-        int l = 0, r = 0;
-        while (r < s1.length()) {
-            int i1 = s1.charAt(r) - 'a';
-            map1[i1] = map1[i1] + 1;
+        int[] count1 = new int[26];
+        int[] count2 = new int[26];
 
+        for (int r = 0; r < s1.length(); r++) {
+            int i1 = s1.charAt(r) - 'a';
+            count1[i1]++;
 
             int i2 = s2.charAt(r) - 'a';
-            map2[i2] = map2[i2] + 1;
-
-            r++;
+            count2[i2]++;
         }
 
-        if (isMatch(map1, map2)) {
+        if (isMatch(count1, count2)) {
             return true;
         }
-
-        for (int i = r; i < s2.length(); i++) {
-            while (i - l + 1 > s1.length()) { // window is invalid
-                int idx = s2.charAt(l) - 'a';
-                map2[idx] = map2[idx] - 1;
+        int l = 0;
+        for (int r = s1.length(); r < s2.length(); r++) {
+            int ri = s2.charAt(r) - 'a';
+            count2[ri]++;
+            while (l <= r && r - l + 1 > s1.length()) {
+                int li = s2.charAt(l) - 'a';
+                count2[li]--;
                 l++;
             }
-            int idx = s2.charAt(i) - 'a';
-            map2[idx] = map2[idx] + 1;
-            if (isMatch(map1, map2)) {
+            if (isMatch(count1, count2)) {
                 return true;
             }
         }
         return false;
     }
 
-    private static boolean isMatch(int[] arr1, int[] arr2) {
-        for (int i = 0; i < arr1.length; i++) {
-            if (arr2[i] != arr1[i]) {
+    private static boolean isMatch(int[] a1, int[] a2) {
+        for (int i = 0; i < a1.length; i++) {
+            if (a1[i] != a2[i]) {
                 return false;
             }
         }
         return true;
     }
+
 }

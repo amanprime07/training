@@ -39,7 +39,8 @@ public class CarFleet {
         }
         return fleet;
     }
-
+//     0, 3, 5, 8, 10
+//    12, 3, 7, 1, 1
     private static int carFleetStack(int[] position, int[] speed, int target) {
         Car[] cars = new Car[position.length];
 
