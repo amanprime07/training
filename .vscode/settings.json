@@ -2,12 +2,21 @@
     "go.useLanguageServer": true,
     "gopls": {
         "ui.diagnostic.staticcheck": true,
-        "directoryFilters": ["-node_modules"]
+        "directoryFilters": [
+            "-node_modules"
+        ]
     },
     "[go]": {
         "editor.formatOnSave": true,
         "editor.codeActionsOnSave": {
             "source.organizeImports": "explicit"
         }
-    }
+    },
+    "java.configuration.runtimes": [
+        {
+            "name": "JavaSE-21",
+            "path": "/opt/homebrew/Cellar/jabba/0.15.0/jdk/openjdk@21.0.2/Contents/Home",
+            "default": true
+        },
+    ]
 }

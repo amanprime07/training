@@ -100,11 +100,11 @@ public class MinHeap {
     }
 
     private int leftChildIdx(int idx) {
-        return (idx + 1);
+        return 2*idx + 1;
     }
 
     private int rightChildIdx(int idx) {
-        return idx + 2;
+        return 2*idx + 2;
     }
 
 
